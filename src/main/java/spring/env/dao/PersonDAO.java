@@ -8,14 +8,12 @@ import spring.env.models.Person;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 public class PersonDAO
 {
-    private static int PEOPLE_COUNT;
     private final JdbcTemplate jdbcTemplate;
 
     public PersonDAO(JdbcTemplate jdbcTemplate)
@@ -32,14 +30,14 @@ public class PersonDAO
     public Optional<Person> show(String email)
     {
         return jdbcTemplate.query("SELECT * FROM Person WHERE email=?",
-                new Object[] {email}, new BeanPropertyRowMapper<>(Person.class))
+                new BeanPropertyRowMapper<>(Person.class), new Object[] {email})
                 .stream().findAny();
     }
 
     public Person show(int id)
     {
         return jdbcTemplate.query("SELECT * FROM Person WHERE id=?",
-                new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
+                new BeanPropertyRowMapper<>(Person.class), new Object[]{id})
                 .stream().findAny().orElse(null);
     }
 
@@ -81,7 +79,7 @@ public class PersonDAO
         System.out.println("MULTIPLE: " + (after - before));
     }
 
-    public void testButchUpdate()
+    public void testBatchUpdate()
     {
         List<Person> people = create1000People();
 

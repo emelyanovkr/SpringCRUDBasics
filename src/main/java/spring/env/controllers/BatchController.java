@@ -32,7 +32,7 @@ public class BatchController
     @GetMapping("/with")
     public String withButch()
     {
-        personDAO.testButchUpdate();
+        personDAO.testBatchUpdate();
         return "redirect:/people";
     }
 }

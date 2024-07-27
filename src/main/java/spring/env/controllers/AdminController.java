@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import spring.env.dao.PersonDAO;
 import spring.env.models.Person;
 
-import javax.swing.*;
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController
