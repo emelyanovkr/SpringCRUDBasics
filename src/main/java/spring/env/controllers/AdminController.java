@@ -3,24 +3,24 @@ package spring.env.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import spring.env.dao.PersonDAO;
 import spring.env.models.Person;
+import spring.env.services.PeopleService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController
 {
-    private final PersonDAO personDAO;
+    private final PeopleService peopleService;
 
-    public AdminController(PersonDAO personDAO)
+    public AdminController(PeopleService peopleService)
     {
-        this.personDAO = personDAO;
+        this.peopleService = peopleService;
     }
 
     @GetMapping()
     public String adminPage(Model model, @ModelAttribute("person")Person person)
     {
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("people", peopleService.findAll());
 
         return "adminPage";
     }
