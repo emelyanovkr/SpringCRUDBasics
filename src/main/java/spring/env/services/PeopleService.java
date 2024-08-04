@@ -3,9 +3,11 @@ package spring.env.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import spring.env.models.Mood;
 import spring.env.models.Person;
 import spring.env.repositories.PeopleRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +38,8 @@ public class PeopleService
   @Transactional
   public void save(Person person)
   {
+    person.setMood(Mood.CALM);
+    person.setCreatedAt(new Date());
     peopleRepository.save(person);
   }
 
